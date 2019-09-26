@@ -77,6 +77,10 @@ if ( !(String(msg.channel.name) == LOCAL) ){
   return 0
   }
 
+//TESTING
+if (msg.content === '!ma help'){
+Client.channels.find(x => x.name === LOCAL).send("testing");
+}
 
 //HELP MESSAGE - Instructions
 if (msg.content === '!ma help'){
