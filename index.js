@@ -11,6 +11,7 @@ var AREA = new Discord.RichEmbed()
 
 //GLOBAL VARIABLES
 var MapCode
+var CHARLIMIT = 1800
 
 var height = 0
 var width = 0
@@ -69,8 +70,40 @@ Client.user.setActivity('you doing !ma help', {type: 'WATCHING'});
 
 //When message <<< ###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~
 Client.on('message', (msg) => {
-if (msg.author == Client.user) {return}
-if ( !((msg.content).slice(0, 3) == "!ma") ){return}
+if (msg.author == Client.user) {return} //No self messages
+
+var Message = msg.content
+var attachment = msg.attachments.first();
+
+//Collab with Evades.io bot <<<
+if ( (String(msg.author) == '<@622188092782018600>') && (typeof attachment === 'object') ){
+  if ( !(String(msg.channel.name) == LOCAL) ){
+    Client.channels.find(x => x.name === String(msg.channel.name)).send("More info. on: " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + ".");
+    }
+  Client.channels.find(x => x.name === LOCAL).send("Here we go, my partner.");
+  Client.channels.find(x => x.name === LOCAL).send(attachment.url);
+
+Message = "!ma diff all"
+mode = "diff"
+AreaNum = "all"
+request(attachment.url, { json: true }, (err, res, body) => {
+  if (err) { return console.log(err); }
+  MapCode = body;
+
+MapInfo(mode, AreaNum, FinalAreaNum);
+
+return 0
+});
+return 0
+} //Collab with Evades.io bot <<<
+
+
+
+var Message = msg.content
+var attachment = msg.attachments.first();
+
+if ( !((Message).slice(0, 3) == "!ma") ){return} //Just message starting with "!ma"
+
 
 if ( !(String(msg.channel.name) == LOCAL) ){
   msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + ".");
@@ -78,13 +111,13 @@ if ( !(String(msg.channel.name) == LOCAL) ){
   }
 
 //TESTING
-if (msg.content === '!ma test'){
+if (Message === '!ma test'){
 Client.channels.find(x => x.name === LOCAL).send("I'm here, ok?!");
 return 0
 }
 
 //HELP MESSAGE - Instructions
-if (msg.content === '!ma help'){
+if (Message === '!ma help'){
     let embed = new Discord.RichEmbed()
     .setColor('#FFD700')
     .setTitle('**Map Analysis commands:**')
@@ -102,7 +135,7 @@ return 0
 }
 
 
-if (msg.content === '!ma coefs'){
+if (Message === '!ma coefs'){
   CoefInfo = "";
   enemies.forEach(GetCoefs);
   console.log(CoefInfo);
@@ -117,7 +150,7 @@ return 0
 }
 
 
-if (msg.content === '!ma tutorial'){
+if (Message === '!ma tutorial'){
   let embed = new Discord.RichEmbed()
   .setColor('#808080')
   .setTitle('**Available tutorials:**')
@@ -139,7 +172,6 @@ return 0
 
 
 //Message translation:
-var Message = msg.content
 var Check = Message.slice(0, 4)
 
 if (Check == "!ma "){
@@ -163,7 +195,7 @@ if (Check == "!ma "){
     }
    
     if (mode == 'tutorial'){
-    tutorial(msg.content, msg.author)
+    tutorial(Message, msg.author)
     return 0
     }
 
@@ -178,8 +210,6 @@ if (Check == "!ma "){
 
 
     //Download file ######################################################################
-    var attachment = msg.attachments.first();
-
     if (typeof attachment === 'undefined'){
         let ERROR = new Discord.RichEmbed()
         .setColor('#FF0000')
@@ -198,6 +228,8 @@ if (Check == "!ma "){
     return 0
     }
 
+
+console.log(attachment.url);
 
 request(attachment.url, { json: true }, (err, res, body) => {
 if (err) { return console.log(err); }
@@ -297,44 +329,63 @@ var complexenemies = new Map([
 //1º STEP (mode sellection) ---------------------------------------------------------------------------
 function MapInfo(mode, AreaNum, FinalAreaNum) {
 
+//RESETING VARIABLES
+height = 0
+width = 0
+Length = 0
+Entrance = 0
+SizeRate = 0
+PartialDIFF = 0
+TotalDiff = 0
+i = 0
+area = 0
+AreaSelect = ""
+SomaDiffs = 0
+AreaCounter = 0
+Highest = 0
+AreaHighest = 0
+DIFFshow = ""
+CoefInfo = ""
+
+
+  var name = "n/a"
+  if (MapCode.name){
+  name = MapCode.name
+  }
+
+  var friction = "n/a"
+  if (MapCode.properties.friction){
+  friction = MapCode.properties.friction
+  }
+
+  var background_color = "n/a"
+  if (MapCode.properties.background_color){
+  background_color = MapCode.properties.background_color
+  }
+
+  var lighting = "n/a"
+  if (MapCode.properties.lighting){
+  lighting = MapCode.properties.lighting
+  }
+
+  var snow = "n/a"
+  if (MapCode.properties.snow){
+  snow = MapCode.properties.snow
+  }
+
+
 //AREA MODE
 if (mode == "area"){
   if (AreaNum == "all"){ //Shows map code
     console.log(MapCode.name)
     console.log(MapCode.properties)
     console.log("Areas: " + MapCode.areas.length)
-    
-    var name = "n/a"
-    if (MapCode.name){
-    name = MapCode.name
-    }
-
-    var friction = "n/a"
-    if (MapCode.properties.friction){
-    friction = MapCode.properties.friction
-    }
-
-    var background_color = "n/a"
-    if (MapCode.properties.background_color){
-    background_color = MapCode.properties.background_color
-    }
-
-    var lighting = "n/a"
-    if (MapCode.properties.lighting){
-    lighting = MapCode.properties.lighting
-    }
-
-    var snow = "n/a"
-    if (MapCode.properties.snow){
-    snow = MapCode.properties.snow
-    }
 
     let AREA = new Discord.RichEmbed()
     .setColor('#00FF00')
     .setTitle('**Map info:**')
     .setDescription("**Name: **" + name + "\n" + "**Friction: **" + friction + "\n" + "**Background_color: **" + background_color + "\n" + "**Lighting: **" + lighting + "\n" + "**Snow: **" + snow + "\n \n" + "**Areas: **" + MapCode.areas.length)
     Client.channels.find(x => x.name === LOCAL).send(AREA);
-
 
     return 0
 
@@ -349,8 +400,8 @@ if (mode == "area"){
       .setDescription("error: Map starts on 1º area.")
       Client.channels.find(x => x.name === LOCAL).send(ERROR);
       return 0
-
     }
+
     if (AreaNum > MapCode.areas.length){
       console.log("error: Map ends on " + (MapCode.areas.length-1) + "º area.")
 
@@ -360,7 +411,6 @@ if (mode == "area"){
       .setDescription("error: Map ends on " + (MapCode.areas.length-1) + "º area.")
       Client.channels.find(x => x.name === LOCAL).send(ERROR);
       return 0
-
     }
 
     if ((1 <= AreaNum) && (AreaNum <= MapCode.areas.length)){
@@ -398,7 +448,6 @@ if (mode == "area"){
       .setTitle("**Area: **" + AreaNum + "º")
       .setDescription(string)
       Client.channels.find(x => x.name === LOCAL).send(AREA);
-
       return 0
     }
 
@@ -430,7 +479,7 @@ if (mode == "area"){
     if (AreaNum == "all"){ //Diff of all areas
       AreaSelect = "all"
       DIFFshow = "```Css" + "\n"
-      DIFFshow = DIFFshow + "All DIFFs: \n"
+      DIFFshow = DIFFshow + "Map name: " + name + "\nAreas: " + MapCode.areas.length + "\n\nAll DIFFs: \n"
       DIFF(0, MapCode.areas.length)
       DIFFshow = DIFFshow + "\nDiffs info:\nAverage: " + (SomaDiffs/AreaCounter).toFixed(3) + "\nHighest: "+ Highest.toFixed(3) + " (" + AreaHighest + "º)" + "\n```"
       Client.channels.find(x => x.name === LOCAL).send(DIFFshow);
@@ -461,7 +510,7 @@ if (mode == "area"){
       if ((FinalAreaNum == "") || (typeof FinalAreaNum === 'undefined')) {
 
         if (AreaNum <= MapCode.areas.length){
-          DIFFshow = "```Makefile" + "\n"
+          DIFFshow = "```Makefile" + "\nArea name: " + name + "\n"
           DIFF( (AreaNum-1), AreaNum )
           DIFFshow = DIFFshow + "```"
           Client.channels.find(x => x.name === LOCAL).send(DIFFshow);
@@ -623,7 +672,9 @@ function CalculateTotal(SpawnerArray) {
 
   if (typeof SpawnerArray === 'undefined') {
     console.log("(" + area + "º) 'spawner:' block not found." )
+    if (DIFFshow.length < CHARLIMIT){
     DIFFshow = DIFFshow + "(" + area + "º) Error: 'spawner:' block not found. \n"
+    }
     return 0
   }
 
@@ -656,7 +707,9 @@ function CalculateTotal(SpawnerArray) {
       TotalDiff = CalculatePartialComplex(type, ammount, radius, speed) + TotalDiff
     }else{
     console.log("(" + area + "º) Id: " + i + " | Type: " + type + " | error: type not found.")
+    if (DIFFshow.length < CHARLIMIT){
     DIFFshow = DIFFshow + "(" + area + "º) Id: " + i + " | Type: " + type + " error: type not found. \n"
+    }
     //console.log(SpawnersArray[i]) //Shows not found enemy's array
     }
   }
@@ -673,11 +726,12 @@ if (typeof height === 'undefined' || typeof height === 'string') {
 }
 
 console.log("(" + area + "º) AD: " + TotalDiff.toFixed(2) + TextSize)
+if (DIFFshow.length < CHARLIMIT){
 DIFFshow = DIFFshow + "(" + area + "º) AD: " + TotalDiff.toFixed(2) + TextSize + "\n"
-
+}
 
 SomaDiffs = SomaDiffs + TotalDiff
-  if (!TotalDiff == 0){AreaCounter = AreaCounter + 1}
+if (!TotalDiff == 0){AreaCounter = AreaCounter + 1}
 
   if (TotalDiff > Highest){
     Highest = TotalDiff
@@ -830,5 +884,3 @@ function tutorial(msg, author){
 
 
 Client.login(token);
-
-//https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=awaitReactions
