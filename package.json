@@ -10,7 +10,9 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "yaml-loader": "^0.5.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {},
   "keywords": [],
