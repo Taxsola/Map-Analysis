@@ -32,7 +32,7 @@ var AreaCounter = 0
 var Highest = 0
 var AreaHighest = 0
 
-var LOCAL = "4-enemy-balance"
+var LOCAL = "3-enemy-balance"
 var DIFFshow = ""
 var CoefInfo = ""
 
@@ -78,8 +78,8 @@ if ( !(String(msg.channel.name) == LOCAL) ){
   }
 
 //TESTING
-if (msg.content === '!ma help'){
-Client.channels.find(x => x.name === LOCAL).send("Testing");
+if (msg.content === '!ma test'){
+Client.channels.find(x => x.name === LOCAL).send("I'm here, ok?!");
 }
 
 //HELP MESSAGE - Instructions
