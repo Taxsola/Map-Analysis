@@ -1,7 +1,8 @@
 const request = require('request');
 const fs = require("fs")
-
 const Discord = require('discord.js');
+YAML = require('yamljs');
+
 const token = process.env.TOKEN;
 const Client = new Discord.Client();
 
@@ -77,6 +78,7 @@ var attachment = msg.attachments.first();
 
 //Collab with Evades.io bot <<<
 if ( (String(msg.author) == '<@622188092782018600>') && (typeof attachment === 'object') ){
+
   if ( !(String(msg.channel.name) == LOCAL) ){
     Client.channels.find(x => x.name === String(msg.channel.name)).send("More info. on: " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + ".");
     }
@@ -86,9 +88,29 @@ if ( (String(msg.author) == '<@622188092782018600>') && (typeof attachment === '
 Message = "!ma diff all"
 mode = "diff"
 AreaNum = "all"
+
+
+if (!String(attachment.filename).endsWith('.json')){
+  let ERROR = new Discord.RichEmbed()
+  .setColor('#FF0000')
+  .setTitle('**ERROR:**')
+  .setDescription("It's not json, Cillian! wtf...")
+  Client.channels.find(x => x.name === LOCAL).send(ERROR);
+return 0
+}
+
 request(attachment.url, { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
   MapCode = body;
+
+  if (typeof MapCode.name === 'undefined'){
+    let ERROR = new Discord.RichEmbed()
+    .setColor('#FF0000')
+    .setTitle('**ERROR:**')
+    .setDescription('A valid json format, Cillian! omg...')
+    Client.channels.find(x => x.name === LOCAL).send(ERROR);
+    return 0
+}
 
 MapInfo(mode, AreaNum, FinalAreaNum);
 
@@ -884,3 +906,5 @@ function tutorial(msg, author){
 
 
 Client.login(token);
+
+//https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=awaitReactions
