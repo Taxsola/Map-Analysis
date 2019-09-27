@@ -80,6 +80,7 @@ if ( !(String(msg.channel.name) == LOCAL) ){
 //TESTING
 if (msg.content === '!ma test'){
 Client.channels.find(x => x.name === LOCAL).send("I'm here, ok?!");
+return 0
 }
 
 //HELP MESSAGE - Instructions
