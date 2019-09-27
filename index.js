@@ -1,7 +1,8 @@
 const request = require('request');
 const fs = require("fs")
 const Discord = require('discord.js');
-//const YAML = require('yamljs');
+const YAML = require('yamljs');
+const YAMLl = require('yaml-loader');
 
 const token = process.env.TOKEN;
 const Client = new Discord.Client();
@@ -76,6 +77,7 @@ if (msg.author == Client.user) {return} //No self messages
 var Message = msg.content
 var attachment = msg.attachments.first();
 
+
 //Collab with Evades.io bot <<<
 if ( (String(msg.author) == '<@622188092782018600>') && (typeof attachment === 'object') ){
 
@@ -89,27 +91,20 @@ Message = "!ma diff all"
 mode = "diff"
 AreaNum = "all"
 
+request(attachment.url, { json: true }, (err, res, body) => {
+  if (err) { return console.log(err); }
+  
+  if (String(attachment.filename).endsWith('.yaml')){body = YAML.parse(body);}
 
-if (!String(attachment.filename).endsWith('.json')){
+MapCode = body;
+
+if (typeof MapCode.name === 'undefined'){
   let ERROR = new Discord.RichEmbed()
   .setColor('#FF0000')
   .setTitle('**ERROR:**')
-  .setDescription("It's not json, Cillian! wtf...")
+  .setDescription('Not valid itdentation format.')
   Client.channels.find(x => x.name === LOCAL).send(ERROR);
-return 0
-}
-
-request(attachment.url, { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-  MapCode = body;
-
-  if (typeof MapCode.name === 'undefined'){
-    let ERROR = new Discord.RichEmbed()
-    .setColor('#FF0000')
-    .setTitle('**ERROR:**')
-    .setDescription('A valid json format, Cillian! omg...')
-    Client.channels.find(x => x.name === LOCAL).send(ERROR);
-    return 0
+  return
 }
 
 MapInfo(mode, AreaNum, FinalAreaNum);
@@ -251,12 +246,12 @@ if (Check == "!ma "){
     }
 
 
-console.log(attachment.url);
-
 request(attachment.url, { json: true }, (err, res, body) => {
 if (err) { return console.log(err); }
+
+if (String(attachment.filename).endsWith('.yaml')){body = YAML.parse(body);}
+
 MapCode = body;
-//console.log(MapCode);
 
 if (typeof MapCode.name === 'undefined'){
     let ERROR = new Discord.RichEmbed()
