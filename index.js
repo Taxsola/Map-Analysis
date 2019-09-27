@@ -1,7 +1,7 @@
 const request = require('request');
 const fs = require("fs")
 const Discord = require('discord.js');
-YAML = require('yamljs');
+const YAML = require('yamljs');
 
 const token = process.env.TOKEN;
 const Client = new Discord.Client();
