@@ -4,8 +4,7 @@ const Discord = require('discord.js');
 const YAML = require('yamljs');
 const YAMLl = require('yaml-loader');
 
-const token = 'NjI1NDc1NTUyMzgzNTk4NTky.XYjoUQ.eKnhHqfyBKT1Ual8267t_5PnZ1Y';
-//const token = process.env.TOKEN;
+const token = process.env.TOKEN;
 const Client = new Discord.Client();
 
 var embed = new Discord.RichEmbed()
