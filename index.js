@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 const YAML = require('yamljs');
 const YAMLl = require('yaml-loader');
 
-const token = process.env.TOKEN;
+const token = 'NjI1NDc1NTUyMzgzNTk4NTky.XYjoUQ.eKnhHqfyBKT1Ual8267t_5PnZ1Y';
+//const token = process.env.TOKEN;
 const Client = new Discord.Client();
 
 var embed = new Discord.RichEmbed()
@@ -172,16 +173,17 @@ if (Message === '!ma tutorial'){
   .setColor('#808080')
   .setTitle('**Available tutorials:**')
   .setDescription("obs: all info based on evades.io v3")
-  .addField('**!tutorial 1**', 'Shows tutorial 1.', false)
-  .addField('**!tutorial 2**', 'Shows tutorial 2.', false)
-  .addField('**!tutorial 3**', 'Shows tutorial 3.', false)
-  .addField('**!tutorial 4**', 'Shows tutorial 4.', false)
-  .addField('**!tutorial 5**', 'Shows tutorial 5.', false)
-  .addField('**!tutorial 6**', 'Shows tutorial 6.', false)
-  .addField('**!tutorial 7**', 'Shows tutorial 7.', false)
-  .addField('**!tutorial 8**', 'Shows tutorial 8.', false)
-  .addField('**!tutorial 9**', 'Shows tutorial 9.', false)
-  .addField('**!tutorial 10**', 'Shows tutorial 10.', false)
+  .addField('**!tutorial 1**', 'Basic concepts.', false)
+  .addField('**!tutorial 2**', 'Tools.', false)
+  .addField('**!tutorial 3**', 'Coords on canvas.', false)
+  .addField('**!tutorial 4**', 'Text blocks.', false)
+  .addField('**!tutorial 5**', 'Identation.', false)
+  .addField('**!tutorial 6**', 'Props.', false)
+  .addField('**!tutorial 7**', 'Properties.', false)
+  .addField('**!tutorial 8**', 'Simple enemies.', false)
+  .addField('**!tutorial 9**', 'Complex enemies.', false)
+  .addField('**!tutorial 10**', 'Engine limits.', false)
+  .addField('**!tutorial 11**', 'Advices.', false)
   Client.channels.find(x => x.name === LOCAL).send(msg.author + ", what do you wanna know?");
   Client.channels.find(x => x.name === LOCAL).send(embed);
 return 0
@@ -828,7 +830,7 @@ var ActiveArea = Length * Entrance
 var Density = EnemyArea / ActiveArea * 100
 
 //2º MAIN EQUATION
-PartialDIFF =  Math.pow(Math.pow((Math.pow(Density, 3.5) * ammount * 500), (1+(speed/1500))), 0.4) * 90000 / ((ActiveArea - (perimeter * 2 * radius) ) + ( 15 * totalgap * 2 * radius) );
+PartialDIFF =  Math.pow(Math.pow((Math.pow(Density, 3.5) * ammount * 500), (1+(Math.pow(speed, 1.5)/2000))), 0.4) * 90000 / ((ActiveArea - (perimeter * 2 * radius) ) + ( 15 * totalgap * 2 * radius) );
 
 
 if (AreaSelect == "specific"){
@@ -859,7 +861,7 @@ function tutorial(msg, author){
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 1:**')
-    .setDescription("obs: all info based on evades.io v3")
+    .setDescription("Basic concepts.")
     .addField('**Topic 1:**', 'Explanation.', false)
     .addField('**Topic 2:**', 'Explanation.', false)
     .addField('**Topic 3:**', 'Explanation.', false)
@@ -872,7 +874,7 @@ function tutorial(msg, author){
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 2:**')
-    .setDescription("obs: all info based on evades.io v3")
+    .setDescription("Tools.")
     .addField('**Topic 1:**', 'Explanation.', false)
     .addField('**Topic 2:**', 'Explanation.', false)
     .addField('**Topic 3:**', 'Explanation.', false)
@@ -885,7 +887,111 @@ function tutorial(msg, author){
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 3:**')
-    .setDescription("obs: all info based on evades.io v3")
+    .setDescription("Coords on canvas.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 4'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 4:**')
+    .setDescription("Text blocks.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 5'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 5:**')
+    .setDescription("Identation.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 6'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 6:**')
+    .setDescription("Props.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 7'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 7:**')
+    .setDescription("Properties.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 8'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 8:**')
+    .setDescription("Simple enemies.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 9'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 9:**')
+    .setDescription("Complex enemies.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 10'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 10:**')
+    .setDescription("Engine limits.")
+    .addField('**Topic 1:**', 'Explanation.', false)
+    .addField('**Topic 2:**', 'Explanation.', false)
+    .addField('**Topic 3:**', 'Explanation.', false)
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+  return 0
+  }
+
+  if (msg === '!ma tutorial 11'){
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 11:**')
+    .setDescription("Advices.")
     .addField('**Topic 1:**', 'Explanation.', false)
     .addField('**Topic 2:**', 'Explanation.', false)
     .addField('**Topic 3:**', 'Explanation.', false)
