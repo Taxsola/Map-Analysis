@@ -287,7 +287,7 @@ return
 return
 }
 
-Client.channels.find(x => x.name === LOCAL).send("Sorry, I'm not sure what are looking for.");
+msg.reply("Sorry; I'm not sure what are you looking for.");
 return
 });
 //END OF TRANSLATION <<< ###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~
