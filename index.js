@@ -865,36 +865,33 @@ function tutorial(msg, author){
 
   if (msg === '!ma tutorial 2'){
     var text = ""  
-
-    let embed = new Discord.RichEmbed()
-    .setColor('#c0c0c0')
-    .setTitle('**Tutorial 2:**')
-    .setDescription("Tools.")
-
-    text = ""
     text += "Current ways to make map codes:" + "\n"
     text += "1. 'By hand'" + "\n"
     text += "2. Extir's sheet" + "\n"
     text += "3. Ravel's map editor" + "\n"
     text += "4. Tax's code generator"
+
+    var text2 = ""    
+    text2 += "01. Brackets {http://brackets.io}" + "\n"
+    text2 += "02. Sublime Text {https://www.sublimetext.com}" + "\n"
+    text2 += "03. Notepad++ {https://notepad-plus-plus.org}" + "\n"
+    text2 += "04. Komodo Edit {https://www.activestate.com/products/komodo-ide/downloads/edit}" + "\n"
+    text2 += "05. Visual Studio Code {https://code.visualstudio.com}" + "\n"
+    text2 += "06. Atom.io {https://atom.io}" + "\n"
+    text2 += "07. Vim {https://www.vim.org}" + "\n"
+    text2 += "08. Eclipse {https://www.eclipse.org/ide}" + "\n"
+    text2 += "09. Geany {https://www.geany.org}" + "\n"
+    text2 += "10. GNU Emacs {https://www.gnu.org/software/emacs}" + "\n"
+    text2 += "11. Kate {https://kate-editor.org}" + "\n"
+    text2 += "12. Intellij {https://www.jetbrains.com/idea}" + "\n"
+    text2 += "13. UltraEdit {https://www.ultraedit.com}"
+
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 2:**')
+    .setDescription("Tools.")
     .addField('**Methods:**', text, false)
-
-    text = ""    
-    text += "01. Brackets {http://brackets.io}" + "\n"
-    text += "02. Sublime Text {https://www.sublimetext.com}" + "\n"
-    text += "03. Notepad++ {https://notepad-plus-plus.org}" + "\n"
-    text += "04. Komodo Edit {https://www.activestate.com/products/komodo-ide/downloads/edit}" + "\n"
-    text += "05. Visual Studio Code {https://code.visualstudio.com}" + "\n"
-    text += "06. Atom.io {https://atom.io}" + "\n"
-    text += "07. Vim {https://www.vim.org}" + "\n"
-    text += "08. Eclipse {https://www.eclipse.org/ide}" + "\n"
-    text += "09. Geany {https://www.geany.org}" + "\n"
-    text += "10. GNU Emacs {https://www.gnu.org/software/emacs}" + "\n"
-    text += "11. Kate {https://kate-editor.org}" + "\n"
-    text += "12. Intellij {https://www.jetbrains.com/idea}" + "\n"
-    text += "13. UltraEdit {https://www.ultraedit.com}"
-    .addField('**Text editors:**', text, false)
-
+    .addField('**Text editors:**', text2, false)
     .addField('**Testing platform:**', "https://evades.ravelfett.com", false)
 
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
@@ -930,6 +927,9 @@ function tutorial(msg, author){
 
   if (msg === '!ma tutorial 5'){
     var text = ""  
+    text += ".Json validator: https://jsonformatter.curiousconcept.com" + "\n"
+    text += ".yaml validator: https://jsonformatter.org/yaml-validator" + "\n"
+    text += ".json/.yaml converter: https://www.json2yaml.com" + "\n"
 
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
@@ -937,10 +937,6 @@ function tutorial(msg, author){
     .setDescription("Identation.")
     .addField('**Function:**', 'Organize information in text blocks witch defines its application.', false)
     .addField('**Details:**', 'Identation is defined by spaces/tabs and indicators, also make sure to use right syntax an lower case for name refferences.', false)
-
-text += ".Json validator: https://jsonformatter.curiousconcept.com" + "\n"
-text += ".yaml validator: https://jsonformatter.org/yaml-validator" + "\n"
-text += ".json/.yaml converter: https://www.json2yaml.com" + "\n"
     .addField('**Usefful links:**', text, false)
 
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
@@ -976,15 +972,13 @@ text += ".json/.yaml converter: https://www.json2yaml.com" + "\n"
 
   if (msg === '!ma tutorial 8'){
     var text = ""
+    text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, normal, repelling, regen_sniper, slowing, immune, oscillating, spiral, zigzag, zoning, speed_sniper, sizing, freezing, turning, gravity, wavy, homing, liquid, sniper, slippery, ice_sniper, radiating_bullets"
 
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 8:**')
     .setDescription("Simple enemies.")
     .addField('**Definition:**', 'Enemies that move freely inside active zone and bounce/reflects when touchs an wall.', false)
-
-text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, normal, repelling, regen_sniper, slowing, immune, oscillating, spiral, zigzag, zoning, speed_sniper, sizing, freezing, turning, gravity, wavy, homing, liquid, sniper, slippery, ice_sniper, radiating_bullets"
-
     .addField('**List:**', text, false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
@@ -993,14 +987,6 @@ text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, norma
 
   if (msg === '!ma tutorial 9'){
     var text = ""
-
-    let embed = new Discord.RichEmbed()
-    .setColor('#c0c0c0')
-    .setTitle('**Tutorial 9:**')
-    .setDescription("Complex enemies.")
-    .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/frost_gigant).', false)
-    .addField('**wall enemies:**', "Change it's movement direction by +90º each time it hits an wall.", false)
-
     text += "-angle: {-180 to +180}" + "\n"
     text += "-direction: {used: -1 / +1} ?" + "\n"
     text += "-turn_speed: {used: -2 to +5} ?" + "\n"
@@ -1014,7 +1000,13 @@ text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, norma
     text += "-immune: {True/False}" + "\n"
     text += "-x:    [position for static ones]" + "\n"
     text += "-y:    [position for static ones]"
-
+    
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 9:**')
+    .setDescription("Complex enemies.")
+    .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/frost_gigant).', false)
+    .addField('**wall enemies:**', "Change it's movement direction by +90º each time it hits an wall.", false)
     .addField('**frost_gigant enemies:**', 'Static or moving with different shoot patterns.\nProperties:\n\n', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
