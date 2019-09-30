@@ -180,7 +180,7 @@ if (Message === '!ma tutorial'){
   var text += "```"
 
   Client.channels.find(x => x.name === LOCAL).send(msg.author + ", what do you wanna know?");
-  Client.channels.find(x => x.name === LOCAL).send(embed);
+  Client.channels.find(x => x.name === LOCAL).send(text);
 return 0
 }
 
