@@ -121,18 +121,12 @@ var attachment = msg.attachments.first();
 
 if ( !((Message).slice(0, 3) == "!ma") ){return} //Just message starting with "!ma"
 
-
 if ( !(String(msg.channel.name) == LOCAL) ){
   msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + ".");
   return 0
   }
 
-//TESTING
-if (Message === '!ma test'){
-Client.channels.find(x => x.name === LOCAL).send("I'm here, ok?!");
-return 0
-}
-
+  
 //HELP MESSAGE - Instructions
 if (Message === '!ma help'){
     let embed = new Discord.RichEmbed()
@@ -726,7 +720,7 @@ function CalculateTotal(SpawnerArray) {
     }else{
     console.log("(" + area + "º) Id: " + i + " | Type: " + type + " | error: type not found.")
     if (DIFFshow.length < CHARLIMIT){
-    DIFFshow = DIFFshow + "(" + area + "º) Id: " + i + " | Type: " + type + " error: type not found. \n"
+    DIFFshow = DIFFshow + "(" + area + "º) Id: " + i + " | Type: " + type + " | error: type not found. \n"
     }
     //console.log(SpawnersArray[i]) //Shows not found enemy's array
     }
@@ -861,22 +855,48 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 1:**')
     .setDescription("Basic concepts.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Map code:**', 'A file that contains all information about elements inside that map.', false)
+    .addField('**Areas:**', 'Map division that contains elements information inside that level.\nAreas difficility should increace as it advance on map extention.', false)
+    .addField('**Zones:**', 'Area division that represents an specifc element.', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
   }
 
   if (msg === '!ma tutorial 2'){
+    var text = ""  
+
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 2:**')
     .setDescription("Tools.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+
+    text = ""
+    text += "Current ways to make map codes:" + "\n"
+    text += "1. 'By hand'" + "\n"
+    text += "2. Extir's sheet" + "\n"
+    text += "3. Ravel's map editor" + "\n"
+    text += "4. Tax's code generator"
+    .addField('**Methods:**', text, false)
+
+    text = ""    
+    text += "01. Brackets {http://brackets.io}" + "\n"
+    text += "02. Sublime Text {https://www.sublimetext.com}" + "\n"
+    text += "03. Notepad++ {https://notepad-plus-plus.org}" + "\n"
+    text += "04. Komodo Edit {https://www.activestate.com/products/komodo-ide/downloads/edit}" + "\n"
+    text += "05. Visual Studio Code {https://code.visualstudio.com}" + "\n"
+    text += "06. Atom.io {https://atom.io}" + "\n"
+    text += "07. Vim {https://www.vim.org}" + "\n"
+    text += "08. Eclipse {https://www.eclipse.org/ide}" + "\n"
+    text += "09. Geany {https://www.geany.org}" + "\n"
+    text += "10. GNU Emacs {https://www.gnu.org/software/emacs}" + "\n"
+    text += "11. Kate {https://kate-editor.org}" + "\n"
+    text += "12. Intellij {https://www.jetbrains.com/idea}" + "\n"
+    text += "13. UltraEdit {https://www.ultraedit.com}"
+    .addField('**Text editors:**', text, false)
+
+    .addField('**Testing platform:**', "https://evades.ravelfett.com", false)
+
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -887,9 +907,9 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 3:**')
     .setDescription("Coords on canvas.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Function:**', 'Organize/align graphic elements on screen.', false)
+    .addField('**Dimensions:**', '2 dimensions:\n-Horizontal > left direction is positive.\n-Vertical > Down direction is positive.', false)
+    .addField('**Refference:**', 'Areas is placed on global canvas (map canvas); but all elements inside an area follows its coords (area canvas).', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -909,13 +929,20 @@ function tutorial(msg, author){
   }
 
   if (msg === '!ma tutorial 5'){
+    var text = ""  
+
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 5:**')
     .setDescription("Identation.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Function:**', 'Organize information in text blocks witch defines its application.', false)
+    .addField('**Details:**', 'Identation is defined by spaces/tabs and indicators, also make sure to use right syntax an lower case for name refferences.', false)
+
+text += ".Json validator: https://jsonformatter.curiousconcept.com" + "\n"
+text += ".yaml validator: https://jsonformatter.org/yaml-validator" + "\n"
+text += ".json/.yaml converter: https://www.json2yaml.com" + "\n"
+    .addField('**Usefful links:**', text, false)
+
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -926,9 +953,9 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 6:**')
     .setDescription("Props.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Definition:**', 'Elements inside active zone (wall/tele) with specifc properties that interacts with players/enemies as a feature to improve experience.', false)
+    .addField('**Walls:**', "Static blocks that bounces enemies and block player's passage.", false)
+    .addField('**Teles:**', 'Static block that effect only players, teleporting it to a specifc point.', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -948,26 +975,47 @@ function tutorial(msg, author){
   }
 
   if (msg === '!ma tutorial 8'){
+    var text = ""
+
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 8:**')
     .setDescription("Simple enemies.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Definition:**', 'Enemies that move freely inside active zone and bounce/reflects when touchs an wall.', false)
+
+text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, normal, repelling, regen_sniper, slowing, immune, oscillating, spiral, zigzag, zoning, speed_sniper, sizing, freezing, turning, gravity, wavy, homing, liquid, sniper, slippery, ice_sniper, radiating_bullets"
+
+    .addField('**List:**', text, false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
   }
 
   if (msg === '!ma tutorial 9'){
+    var text = ""
+
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 9:**')
     .setDescription("Complex enemies.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/frost_gigant).', false)
+    .addField('**wall enemies:**', "Change it's movement direction by +90º each time it hits an wall.", false)
+
+    text += "-angle: {-180 to +180}" + "\n"
+    text += "-direction: {used: -1 / +1} ?" + "\n"
+    text += "-turn_speed: {used: -2 to +5} ?" + "\n"
+    text += "-shot_interval: {ms} ?" + "\n"
+    text += "-cone_angle: {used: 1 to 180} ?" + "\n"
+    text += "-pause_interval: {ms} ?" + "\n"
+    text += "-pause_duration: {ms} ?" + "\n"
+    text += "-turn_acceleration: {used: 0.05-0.8}" + "\n"
+    text += "-shot_acceleration: {used: 2-5}" + "\n"
+    text += "-pattern: cone, spiral, quadspiral, twin, cone_edges, twinspiral, twincone, singlebig" + "\n"
+    text += "-immune: {True/False}" + "\n"
+    text += "-x:    [position for static ones]" + "\n"
+    text += "-y:    [position for static ones]"
+
+    .addField('**frost_gigant enemies:**', 'Static or moving with different shoot patterns.\nProperties:\n\n', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -978,9 +1026,7 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 10:**')
     .setDescription("Engine limits.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**Current limitations:**', 'No multiple active zones;\nNo Inscriptions / Messages / Texts on map code;\nNo touching wall props and area limits;\nNo translation to same spot (x:0 y:0).', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -991,9 +1037,9 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 11:**')
     .setDescription("Advices.")
-    .addField('**Topic 1:**', 'Explanation.', false)
-    .addField('**Topic 2:**', 'Explanation.', false)
-    .addField('**Topic 3:**', 'Explanation.', false)
+    .addField('**No rework:**', 'Define area size/direction/position before setting teleporters.', false)
+    .addField('**Organization:**', 'Use same identation for all areas.', false)
+    .addField('**Analysis Support:**', 'Use short notations and comments.', false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -1006,5 +1052,4 @@ function tutorial(msg, author){
 
 
 Client.login(token);
-
 //https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=awaitReactions
