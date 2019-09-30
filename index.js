@@ -36,6 +36,7 @@ var Highest = 0
 var AreaHighest = 0
 
 var LOCAL = "3-enemy-balance"
+var LOCAL2 = "2-tutorial"
 var DIFFshow = ""
 var CoefInfo = ""
 
@@ -121,8 +122,8 @@ var attachment = msg.attachments.first();
 
 if ( !((Message).slice(0, 3) == "!ma") ){return} //Just message starting with "!ma"
 
-if ( !(String(msg.channel.name) == LOCAL) ){
-  msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + ".");
+if ( !(String(msg.channel.name) == LOCAL) && !(String(msg.channel.name) == LOCAL2) ){
+  msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + "or" + (msg.guild.channels.find(channel => channel.name === LOCAL2).toString()) + ".");
   return 0
   }
 
@@ -140,8 +141,7 @@ if (Message === '!ma help'){
     .addField('**!ma coefs**', 'Shows enemies coefficients.', false)
     .addField('**!ma tutorial**', 'Shows tutorials information.', false)
     .addField('**!ma help**', 'Shows this message.', false)
-    Client.channels.find(x => x.name === LOCAL).send(msg.author + ", some instructions:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    msg.reply("some instructions: \n" + embed);
 return 0
 }
 
@@ -179,8 +179,8 @@ if (Message === '!ma tutorial'){
   text += "!ma tutorial 12 -> Examples." + "\n"
   text += "```"
 
-  Client.channels.find(x => x.name === LOCAL).send(msg.author + ", what do you wanna know?");
-  Client.channels.find(x => x.name === LOCAL).send(text);
+  Client.channels.find(x => x.name === LOCAL2).send(msg.author + ", what do you wanna know?");
+  Client.channels.find(x => x.name === LOCAL2).send(text);
 return 0
 }
 
@@ -200,7 +200,7 @@ if (Check == "!ma "){
 
     Rest = Message.slice(4); //After "!ma "
     if (Rest.indexOf(" ") == -1){
-      Client.channels.find(x => x.name === LOCAL).send("Sorry, I'm not sure what are looking for.");
+      msg.reply("Sorry; I'm not sure what are you looking for.");
       return 0
     }else{
 
@@ -860,8 +860,8 @@ function tutorial(msg, author){
     .addField('**Map code:**', 'A file that contains all information about elements inside that map.', false)
     .addField('**Areas:**', 'Map division that contains elements information inside that level.\nAreas difficility should increace as it advance on map extention.', false)
     .addField('**Zones:**', 'Area division that represents an specifc element.', false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -896,8 +896,8 @@ function tutorial(msg, author){
     .addField('**Text editors:**', text2, false)
     .addField('**Testing platform:**', "https://evades.ravelfett.com", false)
 
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -909,8 +909,8 @@ function tutorial(msg, author){
     .addField('**Function:**', 'Organize/align graphic elements on screen.', false)
     .addField('**Dimensions:**', '2 dimensions:\n-Horizontal > left direction is positive.\n-Vertical > Down direction is positive.', false)
     .addField('**Refference:**', 'Areas is placed on global canvas (map canvas); but all elements inside an area follows its coords (area canvas).', false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -922,8 +922,8 @@ function tutorial(msg, author){
     .addField('**Function:**', "A zone. Defines elements and it's parameters.", false)
     .addField('**Properties:**', "Not setted parameters will use it's general values (Map/Area/zones).", false)
     .addField('**obs:**', "Comments are optional but it can help you when using multiple elements.", false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -941,8 +941,8 @@ function tutorial(msg, author){
     .addField('**Details:**', 'Identation is defined by spaces/tabs and indicators, also make sure to use right syntax an lower case for name refferences.', false)
     .addField('**Usefful links:**', text, false)
 
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -954,8 +954,8 @@ function tutorial(msg, author){
     .addField('**Definition:**', 'Elements inside active zone (wall/tele) with specifc properties that interacts with players/enemies as a feature to improve experience.', false)
     .addField('**Walls:**', "Static blocks that bounces enemies and block player's passage.", false)
     .addField('**Teles:**', 'Static block that effect only players, teleporting it to a specifc point.', false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -975,8 +975,8 @@ function tutorial(msg, author){
     .addField('**Definition:**', 'Parameters that defines element graphic/function.', false)
     .addField('**General properties:**', text, false)
     .addField('**Canvas properties:**', "'Position'(x: ,y: ); 'Translation:'(x: ,y: ); widht; height.", false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -991,8 +991,8 @@ function tutorial(msg, author){
     .addField('**Definition:**', 'Enemies that move freely inside active zone and bounce/reflects when touchs an wall.', false)
     .addField('**Properties:**', "type, count, radius and speed.", false)
     .addField('**List:**', text, false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -1019,8 +1019,8 @@ function tutorial(msg, author){
     .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/frost_giant).', false)
     .addField('**wall enemies:**', "Change it's movement direction by +90º each time it hits an wall.", false)
     .addField('**frost_giant enemies:**', 'Static or moving with different shoot patterns.\nProperties:\n\n' + text, false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -1030,8 +1030,8 @@ function tutorial(msg, author){
     .setTitle('**Tutorial 10:**')
     .setDescription("Engine limits.")
     .addField('**Current limitations:**', 'No multiple active zones;\nNo Inscriptions / Messages / Texts on map code;\nNo touching wall props and area limits;\nNo translation to same area;\nno safe zones in the middle of an area.', false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
@@ -1044,13 +1044,13 @@ function tutorial(msg, author){
     .addField('**Organization:**', 'Use same identation for all areas.', false)
     .addField('**Analysis Support:**', 'Use short notations and comments.', false)
     .addField('**Not forget:**', "'spawner:' and 'assets:' declaration.", false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
   }
 
   if (msg === '!ma tutorial 12'){
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+    Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
 
     var text = ""
     text += "**Tutorial 12:** Map code example.\n"
@@ -1141,12 +1141,12 @@ function tutorial(msg, author){
     text += "  - {height: 480, type: victory, width: 640, x: 0, y: 0}"
     text += "```"
 
-    Client.channels.find(x => x.name === LOCAL).send(text);
+    Client.channels.find(x => x.name === LOCAL2).send(text);
 
   return 0
   }
 
-  Client.channels.find(x => x.name === LOCAL).send("Tutorial not found.\nYou can use '!ma tutorial' to see all available content.");
+  Client.channels.find(x => x.name === LOCAL2).send("Tutorial not found.\nYou can use '!ma tutorial' to see all available content.");
   return 0
 }
 
