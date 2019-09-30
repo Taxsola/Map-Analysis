@@ -1146,12 +1146,12 @@ function tutorial(msg, author){
     text += "#Victory zone" + "\n"
     text += "  - {height: 480, type: victory, width: 640, x: 0, y: 0}"
 
-    let embed = new Discord.RichEmbed()
+    let embed2 = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 12:**')
     .setDescription("Examples.")
     .addField('**Map code example**', text, false)
-    Client.channels.find(x => x.name === LOCAL).send(embed);
+    Client.channels.find(x => x.name === LOCAL).send(embed2);
 
   return 0
   }
