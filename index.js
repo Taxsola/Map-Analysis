@@ -141,7 +141,8 @@ if (Message === '!ma help'){
     .addField('**!ma coefs**', 'Shows enemies coefficients.', false)
     .addField('**!ma tutorial**', 'Shows tutorials information.', false)
     .addField('**!ma help**', 'Shows this message.', false)
-    msg.reply("some instructions: \n" + embed);
+    msg.reply("some instructions:");
+    Client.channels.find(x => x.name === String(msg.channel.name)).send(embed);
 return 0
 }
 
@@ -200,7 +201,7 @@ if (Check == "!ma "){
 
     Rest = Message.slice(4); //After "!ma "
     if (Rest.indexOf(" ") == -1){
-      msg.reply("Sorry; I'm not sure what are you looking for.");
+      msg.reply("sorry. I'm not sure what are you looking for.");
       return 0
     }else{
 
@@ -287,7 +288,7 @@ return
 return
 }
 
-msg.reply("Sorry; I'm not sure what are you looking for.");
+msg.reply("sorry. I'm not sure what are you looking for.");
 return
 });
 //END OF TRANSLATION <<< ###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~###~~~
