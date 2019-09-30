@@ -919,8 +919,8 @@ function tutorial(msg, author){
     .setTitle('**Tutorial 4:**')
     .setDescription("Text blocks.")
     .addField('**Function:**', "A zone. Defines elements and it's parameters.", false)
-    .addField('**Properties:**', "Not setted parameters will use it's general values (Map/Area/zones)", false)
-    .addField('**obs:**', "Comments are optional but it can help you when using multiple elements", false)
+    .addField('**Properties:**', "Not setted parameters will use it's general values (Map/Area/zones).", false)
+    .addField('**obs:**', "Comments are optional but it can help you when using multiple elements.", false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
@@ -1049,11 +1049,97 @@ function tutorial(msg, author){
   }
 
   if (msg === '!ma tutorial 12'){
+    var text = ""
+    text += "name: Excellent Example" + "\n"
+    text += "properties:" + "\n"
+    text += "  friction: 0.75" + "\n"
+    text += "  background_color: [R, G, B, ALPHA]" + "\n"
+    text += "  texture: leaves" + "\n"
+    text += "  snow: 0.1" + "\n"
+    text += "  lighting: 0.5" + "\n"
+    text += "areas:" + "\n"
+    text += "# Area 1" + "\n"
+    text += "- name: Area 1" + "\n"
+    text += "  x: var x" + "\n"
+    text += "  y: var y" + "\n"
+    text += "  zones:" + "\n"
+    text += "#Initial tele" + "\n"
+    text += "  - height: 480" + "\n"
+    text += "    translate: {x: 0, y: 0}" + "\n"
+    text += "    type: exit" + "\n"
+    text += "    width: 64" + "\n"
+    text += "    x: 0" + "\n"
+    text += "    y: 0" + "\n"
+    text += "#Final tele" + "\n"
+    text += "  - height: 480" + "\n"
+    text += "    translate: {x: 160, y: 0}" + "\n"
+    text += "    type: exit" + "\n"
+    text += "    width: 64" + "\n"
+    text += "    x: 3136" + "\n"
+    text += "    y: 0" + "\n"
+    text += "#Initial safe zone" + "\n"
+    text += "  - type: safe" + "\n"
+    text += "    x: 0" + "\n"
+    text += "    y: 0" + "\n"
+    text += "    width: 320" + "\n"
+    text += "    height: 480" + "\n"
+    text += "    properties:" + "\n"
+    text += "      minimum_speed: 10" + "\n"
+    text += "#Final safe zone" + "\n"
+    text += "  - type: safe" + "\n"
+    text += "    x: 2880" + "\n"
+    text += "    y: 0" + "\n"
+    text += "    width: 320" + "\n"
+    text += "    height: 480" + "\n"
+    text += "#Active zone" + "\n"
+    text += "  - height: 480" + "\n"
+    text += "    spawner:" + "\n"
+    text += "    - count: 12" + "\n"
+    text += "      radius: 18" + "\n"
+    text += "      speed: 3.3" + "\n"
+    text += "      types: [normal]" + "\n"
+    text += "    type: active" + "\n"
+    text += "    width: 2560" + "\n"
+    text += "    x: 320" + "\n"
+    text += "    y: 0" + "\n"
+    text += "#ASSETS PROPS" + "\n"
+    text += "  assets:" + "\n"
+    text += "  - type: light_region" + "\n"
+    text += "    x: 0" + "\n"
+    text += "    y: 0" + "\n"
+    text += "    width: 320 " + "\n"
+    text += "    height: 480" + "\n"
+    text += "  - type: flashlight_spawner" + "\n"
+    text += "    x: 160" + "\n"
+    text += "    y: 240" + "\n"
+    text += "  - type: wall" + "\n"
+    text += "    x: 384" + "\n"
+    text += "    y: 224" + "\n"
+    text += "    width: 320" + "\n"
+    text += "    height: 32" + "\n"
+    text += "    texture: ice" + "\n"
+    text += "#VICTORY AREA" + "\n"
+    text += "- name: Victory" + "\n"
+    text += "  x:  0" + "\n"
+    text += "  y:  0" + "\n"
+    text += "  zones:" + "\n"
+    text += "#Initial tele" + "\n"
+    text += "  - height: 480" + "\n"
+    text += "    translate: {x: -160, y: 0}" + "\n"
+    text += "    type: exit" + "\n"
+    text += "    width: 64" + "\n"
+    text += "    x: 0" + "\n"
+    text += "    y: 0" + "\n"
+    text += "#Final 'tele' (removal)" + "\n"
+    text += "  - {height: 480, type: removal, width: 64, x: 576, y: 0}" + "\n"
+    text += "#Victory zone" + "\n"
+    text += "  - {height: 480, type: victory, width: 640, x: 0, y: 0}"
+
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 12:**')
     .setDescription("Examples.")
-    .addField('**test**', ".", false)
+    .addField('**Map code example**', text, false)
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
   return 0
