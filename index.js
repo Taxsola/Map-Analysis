@@ -191,8 +191,6 @@ var Check = Message.slice(0, 4)
 
 if (Check == "!ma "){
 
-    msg.reply("let me try.");
-
     var mode = ""
     var AreaNum 
     var FinalAreaNum = 0
@@ -209,10 +207,12 @@ if (Check == "!ma "){
     }
    
     if (mode == 'tutorial'){
+    Client.channels.find(x => x.name === LOCAL2).send(msg.author + ", let me try.");
     tutorial(Message, msg.author)
     return 0
     }
 
+    Client.channels.find(x => x.name === LOCAL).send(msg.author + ", let me try.");
 
     if (Rest.indexOf(" ") == -1){
     AreaNum = Rest
