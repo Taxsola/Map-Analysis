@@ -1052,6 +1052,8 @@ function tutorial(msg, author){
     Client.channels.find(x => x.name === LOCAL).send("Here we go:");
 
     var text = ""
+    text += "**Tutorial 12:** Map code example.\n"
+    text += "```yaml\n"
     text += "name: Excellent Example" + "\n"
     text += "properties:" + "\n"
     text += "  friction: 0.75" + "\n"
@@ -1119,16 +1121,7 @@ function tutorial(msg, author){
     text += "    y: 224" + "\n"
     text += "    width: 320" + "\n"
     text += "    height: 32" + "\n"
-    text += "    texture: ice"
-
-    let embed = new Discord.RichEmbed()
-    .setColor('#c0c0c0')
-    .setTitle('**Tutorial 12:**')
-    .setDescription("Examples.")
-    .addField('**Map code example**', text, false)
-    Client.channels.find(x => x.name === LOCAL).send(embed);
-
-    text = ""
+    text += "    texture: ice" + "\n"
     text += "#VICTORY AREA" + "\n"
     text += "- name: Victory" + "\n"
     text += "  x:  0" + "\n"
@@ -1145,13 +1138,9 @@ function tutorial(msg, author){
     text += "  - {height: 480, type: removal, width: 64, x: 576, y: 0}" + "\n"
     text += "#Victory zone" + "\n"
     text += "  - {height: 480, type: victory, width: 640, x: 0, y: 0}"
+    text += "```"
 
-    let embed2 = new Discord.RichEmbed()
-    .setColor('#c0c0c0')
-    .setTitle('**Tutorial 12:**')
-    .setDescription("Examples.")
-    .addField('**Map code example**', text, false)
-    Client.channels.find(x => x.name === LOCAL).send(embed2);
+    Client.channels.find(x => x.name === LOCAL).send(text);
 
   return 0
   }
