@@ -191,8 +191,7 @@ var Check = Message.slice(0, 4)
 
 if (Check == "!ma "){
 
-    Client.channels.find(x => x.name === LOCAL).send(msg.author + ", let me try.");
-
+    msg.reply("let me try.");
 
     var mode = ""
     var AreaNum 
