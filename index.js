@@ -162,22 +162,23 @@ return 0
 
 
 if (Message === '!ma tutorial'){
-  let embed = new Discord.RichEmbed()
-  .setColor('#808080')
-  .setTitle('**Available tutorials:**')
-  .setDescription("obs: all info based on evades.io v3")
-  .addField('**!ma tutorial 1**', 'Basic concepts.', false)
-  .addField('**!ma tutorial 2**', 'Tools.', false)
-  .addField('**!ma tutorial 3**', 'Coords on canvas.', false)
-  .addField('**!ma tutorial 4**', 'Text blocks.', false)
-  .addField('**!ma tutorial 5**', 'Identation.', false)
-  .addField('**!ma tutorial 6**', 'Props.', false)
-  .addField('**!ma tutorial 7**', 'Properties.', false)
-  .addField('**!ma tutorial 8**', 'Simple enemies.', false)
-  .addField('**!ma tutorial 9**', 'Complex enemies.', false)
-  .addField('**!ma tutorial 10**', 'Engine limits.', false)
-  .addField('**!ma tutorial 11**', 'Advices.', false)
-  .addField('**!ma tutorial 12**', 'Examples.', false)
+  var text = ""
+  var text += "**Available tutorials:**" + "\n"
+  var text += "```Apache" + "\n"
+  var text += "!ma tutorial 1 -> Basic concepts." + "\n"
+  var text += "!ma tutorial 2 -> Tools." + "\n"
+  var text += "!ma tutorial 3 -> Coords on canvas." + "\n"
+  var text += "!ma tutorial 4 -> Text blocks." + "\n"
+  var text += "!ma tutorial 5 -> Identation." + "\n"
+  var text += "!ma tutorial 6 -> Props." + "\n"
+  var text += "!ma tutorial 7 -> Properties." + "\n"
+  var text += "!ma tutorial 8 -> Simple enemies." + "\n"
+  var text += "!ma tutorial 9 -> Complex enemies." + "\n"
+  var text += "!ma tutorial 10 -> Engine limits." + "\n"
+  var text += "!ma tutorial 11 -> Advices." + "\n"
+  var text += "!ma tutorial 12 -> Examples." + "\n"
+  var text += "```"
+
   Client.channels.find(x => x.name === LOCAL).send(msg.author + ", what do you wanna know?");
   Client.channels.find(x => x.name === LOCAL).send(embed);
 return 0
