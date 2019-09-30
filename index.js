@@ -166,17 +166,17 @@ if (Message === '!ma tutorial'){
   .setColor('#808080')
   .setTitle('**Available tutorials:**')
   .setDescription("obs: all info based on evades.io v3")
-  .addField('**!tutorial 1**', 'Basic concepts.', false)
-  .addField('**!tutorial 2**', 'Tools.', false)
-  .addField('**!tutorial 3**', 'Coords on canvas.', false)
-  .addField('**!tutorial 4**', 'Text blocks.', false)
-  .addField('**!tutorial 5**', 'Identation.', false)
-  .addField('**!tutorial 6**', 'Props.', false)
-  .addField('**!tutorial 7**', 'Properties.', false)
-  .addField('**!tutorial 8**', 'Simple enemies.', false)
-  .addField('**!tutorial 9**', 'Complex enemies.', false)
-  .addField('**!tutorial 10**', 'Engine limits.', false)
-  .addField('**!tutorial 11**', 'Advices.', false)
+  .addField('**!ma tutorial 1**', 'Basic concepts.', false)
+  .addField('**!ma tutorial 2**', 'Tools.', false)
+  .addField('**!ma tutorial 3**', 'Coords on canvas.', false)
+  .addField('**!ma tutorial 4**', 'Text blocks.', false)
+  .addField('**!ma tutorial 5**', 'Identation.', false)
+  .addField('**!ma tutorial 6**', 'Props.', false)
+  .addField('**!ma tutorial 7**', 'Properties.', false)
+  .addField('**!ma tutorial 8**', 'Simple enemies.', false)
+  .addField('**!ma tutorial 9**', 'Complex enemies.', false)
+  .addField('**!ma tutorial 10**', 'Engine limits.', false)
+  .addField('**!ma tutorial 11**', 'Advices.', false)
   Client.channels.find(x => x.name === LOCAL).send(msg.author + ", what do you wanna know?");
   Client.channels.find(x => x.name === LOCAL).send(embed);
 return 0
@@ -1052,4 +1052,5 @@ text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, norma
 
 
 Client.login(token);
+
 //https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=awaitReactions
