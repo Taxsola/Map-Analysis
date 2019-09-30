@@ -1049,6 +1049,8 @@ function tutorial(msg, author){
   }
 
   if (msg === '!ma tutorial 12'){
+    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
+
     var text = ""
     text += "name: Excellent Example" + "\n"
     text += "properties:" + "\n"
@@ -1117,7 +1119,16 @@ function tutorial(msg, author){
     text += "    y: 224" + "\n"
     text += "    width: 320" + "\n"
     text += "    height: 32" + "\n"
-    text += "    texture: ice" + "\n"
+    text += "    texture: ice"
+
+    let embed = new Discord.RichEmbed()
+    .setColor('#c0c0c0')
+    .setTitle('**Tutorial 12:**')
+    .setDescription("Examples.")
+    .addField('**Map code example**', text, false)
+    Client.channels.find(x => x.name === LOCAL).send(embed);
+
+    text = ""
     text += "#VICTORY AREA" + "\n"
     text += "- name: Victory" + "\n"
     text += "  x:  0" + "\n"
@@ -1140,8 +1151,8 @@ function tutorial(msg, author){
     .setTitle('**Tutorial 12:**')
     .setDescription("Examples.")
     .addField('**Map code example**', text, false)
-    Client.channels.find(x => x.name === LOCAL).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL).send(embed);
+
   return 0
   }
 
