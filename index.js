@@ -75,7 +75,7 @@ Client.user.setActivity('you doing !ma help', {type: 'WATCHING'});
 Client.on('message', (msg) => {
 if (msg.author == Client.user) {return} //No self messages
 
-if (msg.content == "@Map Analysis#2232") || (msg.content == "@Map Analysis"){
+if ((msg.content == "@Map Analysis#2232") || (msg.content == "@Map Analysis")) {
   msg.reply(msg.author + ", Say '!ma help' for more instructions.")
   return
 }
