@@ -75,9 +75,12 @@ Client.user.setActivity('you doing !ma help', {type: 'WATCHING'});
 Client.on('message', (msg) => {
 if (msg.author == Client.user) {return} //No self messages
 
-if ((msg.content == "@Map Analysis#2232") || (msg.content == "@Map Analysis")) {
-  msg.reply(msg.author + ", Say '!ma help' for more instructions.")
-  return
+if ((msg.content == "<@625475552383598592>")) {
+  if ( !(String(msg.channel.name) == LOCAL) && !(String(msg.channel.name) == LOCAL2) ){
+    msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + "or" + (msg.guild.channels.find(channel => channel.name === LOCAL2).toString()) + ".");
+    return
+  }else{msg.reply("say '!ma help' for more instructions.")}
+    return
 }
 
 var Message = msg.content
