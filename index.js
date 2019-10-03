@@ -78,8 +78,9 @@ if (msg.author == Client.user) {return} //No self messages
 console.log(String(msg.author));
 
 if (msg.content.includes("<@465386899112984587>")) {
-  if (String(msg.author) == "<@369217982594940931>"){msg.reply("<@625475552383598592>");} else {msg.reply("¬¬");}
-return
+  if (String(msg.author) == "<@369217982594940931>") {for (var CIL = 0; CIL = 10; CIL++) {msg.reply("@369217982594940931>");} }
+  if (String(msg.author) == "<@625475552383598592>") {for (var CIL = 0; CIL = 10; CIL++) {msg.reply("@369217982594940931> ur bot is pinging me.");} }
+  return
 }
 
 if ((msg.content == "<@625475552383598592>")) {
