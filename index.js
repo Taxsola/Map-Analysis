@@ -532,7 +532,7 @@ if (mode == "area"){
       if ((FinalAreaNum == "") || (typeof FinalAreaNum === 'undefined')) {
 
         if (AreaNum <= MapCode.areas.length){
-          DIFFshow = "```Makefile" + "\nArea name: " + name + "\n"
+          DIFFshow = "```Makefile" + "\nMap name: " + name + "\n"
           DIFF( (AreaNum-1), AreaNum )
           DIFFshow = DIFFshow + "```"
           Client.channels.find(x => x.name === LOCAL).send(DIFFshow);
@@ -915,7 +915,7 @@ function tutorial(msg, author){
     .setTitle('**Tutorial 3:**')
     .setDescription("Coords on canvas.")
     .addField('**Function:**', 'Organize/align graphic elements on screen.', false)
-    .addField('**Dimensions:**', '2 dimensions:\n-Horizontal > left direction is positive.\n-Vertical > Down direction is positive.', false)
+    .addField('**Dimensions:**', '2 dimensions:\n-Horizontal > Right direction is positive.\n-Vertical > Down direction is positive.', false)
     .addField('**Refference:**', 'Areas is placed on global canvas (map canvas); but all elements inside an area follows its coords (area canvas).', false)
     Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL2).send(embed);
@@ -1037,7 +1037,7 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 10:**')
     .setDescription("Engine limits.")
-    .addField('**Current limitations:**', 'No multiple active zones;\nNo Inscriptions / Messages / Texts on map code;\nNo touching wall props and area limits;\nNo translation to same area;\nno safe zones in the middle of an area.', false)
+    .addField('**Current limitations:**', 'No multiple active zones;\nNo Inscriptions / Messages / Texts on map code;\nNo touching wall props and area limits;\nNo translation to same area;\nNo safe zones in the middle of an area.', false)
     Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL2).send(embed);
   return 0
