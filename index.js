@@ -75,14 +75,6 @@ Client.user.setActivity('you doing !ma help', {type: 'WATCHING'});
 Client.on('message', (msg) => {
 if (msg.author == Client.user) {return} //No self messages
 
-console.log(String(msg.author));
-
-if (msg.content.includes("<@465386899112984587>")) {
-  if (String(msg.author) == "<@369217982594940931>") {for (var CIL = 0; CIL = 10; CIL++) {msg.reply("@369217982594940931>");} }
-  if (String(msg.author) == "<@625475552383598592>") {for (var CIL = 0; CIL = 10; CIL++) {msg.reply("@369217982594940931> ur bot is pinging me.");} }
-  return
-}
-
 if ((msg.content == "<@625475552383598592>")) {
   if ( !(String(msg.channel.name) == LOCAL) && !(String(msg.channel.name) == LOCAL2) ){
     msg.reply("lets talk on " + (msg.guild.channels.find(channel => channel.name === LOCAL).toString()) + "or" + (msg.guild.channels.find(channel => channel.name === LOCAL2).toString()) + ".");
