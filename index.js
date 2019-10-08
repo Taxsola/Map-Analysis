@@ -183,7 +183,7 @@ if (Message === '!ma tutorial'){
   text += "!ma tutorial 7 -> Properties." + "\n"
   text += "!ma tutorial 8 -> Simple enemies." + "\n"
   text += "!ma tutorial 9 -> Complex enemies." + "\n"
-  text += "!ma tutorial 10 -> Engine limits." + "\n"
+  text += "!ma tutorial 10 -> Engine limitation." + "\n"
   text += "!ma tutorial 11 -> Advices." + "\n"
   text += "!ma tutorial 12 -> Examples." + "\n"
   text += "```"
@@ -314,7 +314,6 @@ var enemies = new Map([
 ['dasher', 560.9685],
 ['switch', 586.1021],
 ['snowman', 614.3447],
-['icicle', 683.2781],
 ['draining', 750.695],
 ['disabling', 777.4323],
 ['normal', 806.9133],
@@ -343,6 +342,7 @@ var enemies = new Map([
 //Complex Enemy list
 var complexenemies = new Map([
   ["wall", 1],
+  ['icicle', 1],
   ["frost_giant", 1]
 ])
 
@@ -679,8 +679,8 @@ function DIFF(InitialArea, FinalArea){
     console.log("Area Direction: " + Direction)
     console.log("Partial results:")
 
-    DIFFshow = DIFFshow + "Difficility: \n"
-    DIFFshow = DIFFshow + "Area: " + (a+1) + "º" + "\n" + "Active zone size: " + width + " x " + height + " | Tiles: " + (width/32).toFixed(0) + " x " + (height/32).toFixed(0) + " | Size Rate: " + SizeRate.toFixed(2) + "\n" + "Area Direction: " + Direction + "\n" + "Partial results: \n"
+    DIFFshow = DIFFshow + "Diff analysis: \n"
+    DIFFshow = DIFFshow + "Area: " + (a+1) + "º" + "\n" + "Active zone size: " + width + " x " + height + " | Tiles: " + (width/32).toFixed(0) + " x " + (height/32).toFixed(0) + " | Size Rate: " + SizeRate.toFixed(2) + "\n" + "Area Direction: " + Direction + "\n" + "Partial results: \n\n"
      }
 
     //Call math
@@ -703,38 +703,43 @@ function CalculateTotal(SpawnerArray) {
   TotalDiff = 0 //Reset Area diff variable
   for (i = 0; i < SpawnerArray.length; i++) {
 
-    var type = ""
+    var types
     var ammount = 0
     var radius = 0
     var speed = 0
- 
-  type = SpawnerArray[i].type
-  if (SpawnerArray[i].types.length = 1){
-   type = SpawnerArray[i].types[0]
+
+    ammount = SpawnerArray[i].count
+    radius = SpawnerArray[i].radius
+    speed = SpawnerArray[i].speed
+
+
+  if ( !(String(SpawnerArray[i].type) === 'undefined') ){
+    types = SpawnerArray[i].type;
+   }
+  if ( !(String(SpawnerArray[i].types) === 'undefined') ){
+    types = SpawnerArray[i].types;
   }
-  if (typeof type === 'undefined') {
-  type = "MULTIPLE"
-  }
-  String(type)
 
-  ammount = SpawnerArray[i].count
-  radius = SpawnerArray[i].radius
-  speed = SpawnerArray[i].speed
+for (var tp = 0; tp < types.length; tp++){
+  var enemy = String(types[tp]);
+  console.log(enemy);
 
-
-  if (enemies.has(type)) {
-    TotalDiff = CalculatePartial(type, ammount, radius, speed) + TotalDiff
+  if (enemies.has(enemy)) {
+    TotalDiff = CalculatePartial(enemy, ammount, radius, speed) + TotalDiff
   }else{
-    if (complexenemies.has(type)) {
-      TotalDiff = CalculatePartialComplex(type, ammount, radius, speed) + TotalDiff
+    if (complexenemies.has(enemy)) {
+      TotalDiff = CalculatePartialComplex(enemy, ammount, radius, speed) + TotalDiff
     }else{
-    console.log("(" + area + "º) Id: " + i + " | Type: " + type + " | error: type not found.")
+    console.log("(" + area + "º) Id: " + i + " | Type: " + enemy + " | error: type not found.")
     if (DIFFshow.length < CHARLIMIT){
-    DIFFshow = DIFFshow + "(" + area + "º) Id: " + i + " | Type: " + type + " | error: type not found. \n"
+    DIFFshow = DIFFshow + "(" + area + "º) Id: " + i + " | Type: " + enemy + " | error: type not found. \n"
     }
     //console.log(SpawnersArray[i]) //Shows not found enemy's array
     }
   }
+
+}
+
 
 }
 
@@ -787,7 +792,7 @@ function CalculatePartial(type, ammount, radius, speed) {
     var part = '';
     for (let key in zona) {part += key + ': ' + zona[key] + " ";}
 
-  DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n"
+  DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n\n"
   }
 
   return PartialDIFF
@@ -813,7 +818,7 @@ if (type == "wall") {
     var part = '';
     for (let key in zona) {part += key + ': ' + zona[key] + " ";}
 
-    DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n"
+    DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n\n"
     }
     
     return PartialDIFF
@@ -844,14 +849,45 @@ var zona = SpawnersArray[i]
 var part = '';
 for (let key in zona) {part += key + ': ' + zona[key] + " ";}
 
-DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n"
+DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Density: " + Density.toFixed(2) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n\n"
+}
+
+return PartialDIFF
+}
+
+
+
+//Icicle enemy
+if (type == "icicle") {
+
+  var PATH = height - (2 * radius); //enemy course
+  var LD = (2 * radius * ammount) * 100 / width; //linear density (%)
+  var gap = (width - (2 * radius * ammount)) / ammount;
+  if (gap < 0) {gap = 0}
+
+  var EnemyArea = (ammount * 6.28319 * radius * radius) //not used
+  var ActiveArea = Length * Entrance //not used
+  var Density = EnemyArea / ActiveArea * 100 //not used
+
+//2º MAIN EQUATION
+PartialDIFF =  Math.pow(Math.pow((LD * Math.pow(ammount,1.5) * 500), (1+(Math.pow(speed, 1.5)/1000))), 0.4) * 40 / ( ((PATH * 1) + (gap * 10)) / (Length/height) );
+
+
+if (AreaSelect == "specific"){
+console.log("Enemy id: " + i + " | Type: " + type + " | Diff: " + PartialDIFF.toFixed(2))
+console.log(SpawnersArray[i])
+
+var zona = SpawnersArray[i]
+var part = '';
+for (let key in zona) {part += key + ': ' + zona[key] + " ";}
+
+DIFFshow = DIFFshow + "Enemy id: " + i + " | Type: " + type + " | Dens.²: " + Density.toFixed(1) + "% | Dens.¹: " + LD.toFixed(1) + "% | Diff: " + PartialDIFF.toFixed(2) + "\n" + "[" + part + "]" + "\n\n"
 }
 
 return PartialDIFF
 }
 
 //Other complex enemy
-
 
 return 0
 }
@@ -990,7 +1026,7 @@ function tutorial(msg, author){
 
   if (msg === '!ma tutorial 8'){
     var text = ""
-    text = "teleporting, dasher, switch, snowman, icicle, draining, disabling, normal, repelling, regen_sniper, slowing, immune, oscillating, spiral, zigzag, zoning, speed_sniper, sizing, freezing, turning, gravity, wavy, homing, liquid, sniper, slippery, ice_sniper, radiating_bullets"
+    text = "teleporting, dasher, switch, snowman, draining, disabling, normal, repelling, regen_sniper, slowing, immune, oscillating, spiral, zigzag, zoning, speed_sniper, sizing, freezing, turning, gravity, wavy, homing, liquid, sniper, slippery, ice_sniper, radiating_bullets"
 
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
@@ -1024,7 +1060,7 @@ function tutorial(msg, author){
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 9:**')
     .setDescription("Complex enemies.")
-    .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/frost_giant).', false)
+    .addField('**Definition:**', 'Enemies that do not reflect on walls or have many properties (wall/icicle/frost_giant).', false)
     .addField('**wall enemies:**', "Change it's movement direction by +90º each time it hits an wall.", false)
     .addField('**frost_giant enemies:**', 'Static or moving with different shoot patterns.\nProperties:\n\n' + text, false)
     Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
@@ -1036,7 +1072,7 @@ function tutorial(msg, author){
     let embed = new Discord.RichEmbed()
     .setColor('#c0c0c0')
     .setTitle('**Tutorial 10:**')
-    .setDescription("Engine limits.")
+    .setDescription("Engine limitation.")
     .addField('**Current limitations:**', 'No multiple active zones;\nNo Inscriptions / Messages / Texts on map code;\nNo touching wall props and area limits;\nNo translation to same area;\nNo safe zones in the middle of an area.', false)
     Client.channels.find(x => x.name === LOCAL2).send("Here we go:");
     Client.channels.find(x => x.name === LOCAL2).send(embed);
