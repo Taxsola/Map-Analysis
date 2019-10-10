@@ -810,10 +810,10 @@ if (type == "wall") {
   var EnemyArea = (ammount * 6.28319 * radius * radius)
   var ActiveArea = Length * Entrance
   var Density = EnemyArea / ActiveArea * 100
-  
+
 
   if ( (gap < 32 || ((2 * radius)) >= (Entrance - 32)) ) {
-    PartialDIFF = 100
+    PartialDIFF = 100 + Density
     
     if (AreaSelect == "specific"){
     console.log("Enemy id: " + i + " | Type: " + type + " | Diff: " + PartialDIFF.toFixed(2))
