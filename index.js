@@ -679,8 +679,7 @@ function DIFF(InitialArea, FinalArea){
     console.log("Area Direction: " + Direction)
     console.log("Partial results:")
 
-    DIFFshow = DIFFshow + "Diff analysis: \n"
-    DIFFshow = DIFFshow + "Area: " + (a+1) + "º" + "\n" + "Active zone size: " + width + " x " + height + " | Tiles: " + (width/32).toFixed(0) + " x " + (height/32).toFixed(0) + " | Size Rate: " + SizeRate.toFixed(2) + "\n" + "Area Direction: " + Direction + "\n" + "Partial results: \n\n"
+    DIFFshow = DIFFshow + "Area: " + (a+1) + "º" + "\n\n" + "Diff analysis: \n" + "Active zone size: " + width + " x " + height + " | Tiles: " + (width/32).toFixed(0) + " x " + (height/32).toFixed(0) + " | Size Rate: " + SizeRate.toFixed(2) + "\n" + "Area Direction: " + Direction + "\n" + "Partial results: \n\n"
      }
 
     //Call math
