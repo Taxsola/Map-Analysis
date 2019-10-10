@@ -807,6 +807,11 @@ if (type == "wall") {
   var totalgap = perimeter - (2 * radius * ammount)
   var gap = totalgap / ammount
 
+  var EnemyArea = (ammount * 6.28319 * radius * radius)
+  var ActiveArea = Length * Entrance
+  var Density = EnemyArea / ActiveArea * 100
+  
+
   if ( (gap < 32 || ((2 * radius)) >= (Entrance - 32)) ) {
     PartialDIFF = 100
     
@@ -832,10 +837,6 @@ if (ammount > 1) {
   }
 }
 
-
-var EnemyArea = (ammount * 6.28319 * radius * radius)
-var ActiveArea = Length * Entrance
-var Density = EnemyArea / ActiveArea * 100
 
 //2º MAIN EQUATION
 PartialDIFF =  Math.pow(Math.pow((Math.pow(Density, 3.5) * ammount * 500), (1+(Math.pow(speed, 1.5)/2000))), 0.4) * 90000 / ((ActiveArea - (perimeter * 2 * radius) ) + ( 15 * totalgap * 2 * radius) );
